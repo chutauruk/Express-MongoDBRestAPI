@@ -71,13 +71,9 @@ const loginUser = asyncHandler(async (req, res) => {
 // @route   GET /api/users/me
 // @access  Private
 const getMe = asyncHandler(async (req, res) => {
-    const {_id, name, email} = await User.findById(req.user.id) //whichever user has authenticated
-
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-    })
+//    const {_id, name, email} = await User.findById(req.user.id) //whichever user has authenticated *Someone pointed out to BTraversy this was redundant so he deleted this part out* 
+    res.status(200).json(req.user)
+        //{id: _id, name, email, }   // no reason to find user again
 })
 
 // Generate JWT
